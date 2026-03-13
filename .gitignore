@@ -1,0 +1,41 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+.chatbot/
+
+# Environment variables / secrets
+.env
+.env.*
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Build files
+build/
+dist/
+*.egg-info/
+*.egg
+*.whl
+
+# Test / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+git status
