@@ -218,8 +218,6 @@ This project demonstrates practical concepts used in real AI systems:
 
 ---
 
-# 📜 License
-
 This project is open-source and available under the MIT License.
 
 ---
