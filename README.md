@@ -1,6 +1,6 @@
 # AI ChatBot 🤖
 
-A modular **CLI-based AI chatbot built in Python** that integrates with Hugging Face Large Language Models (LLMs).
+A modular CLI-based AI chatbot built in Python that integrates with Google Gemini Large Language Models (LLMs).
 The project demonstrates core concepts used in modern AI systems such as **conversation memory, system prompts, context management, and configurable model parameters**.
 
 This chatbot maintains conversational context, applies personality instructions through a system prompt, and provides an interactive terminal chat experience.
@@ -10,10 +10,10 @@ This chatbot maintains conversational context, applies personality instructions 
 # 🚀 Features
 
 - **LLM Integration**
-  - Uses Hugging Face inference API to communicate with a large language model.
+  - Uses the Google Gemini API to communicate with a large language model and generate responses.
 
 - **Conversation Memory**
-  - Maintains conversation history to allow multi-turn dialogue.
+  - Maintains conversation history so the chatbot can remember previous messages and respond intelligently.
 
 - **Context Window Management**
   - Implements a sliding context window using `MAX_HISTORY` to prevent context overflow.
@@ -62,8 +62,8 @@ ai_ChatBot/
 │   ├── __init__.py
 │   ├── chat.py          # CLI chat interface
 │   ├── context.py       # Conversation context management
-│   ├── llm.py           # Hugging Face LLM API interaction
-│   ├── utils.py         # Utility functions (response formatting)
+│   ├── llm.py           # Gemini API interaction
+│   └── utils.py         # Utility functions (response formatting)
 │
 ├── config/
 │   └── setting.py       # Configuration and model settings
@@ -114,12 +114,10 @@ pip install -r requirements.txt
 Create a `.env` file in the project root:
 
 ```
-HF_API_TOKEN=your_huggingface_api_key
+GEMINI_API_KEY = your_Gemini_api_key
 ```
 
-You can get a token from:
-
-https://huggingface.co/settings/tokens
+You can obtain an API key from Google AI Studio.
 
 ---
 
@@ -157,10 +155,10 @@ config/setting.py
 Example settings:
 
 ```
-MODEL_NAME = "meta-llama/Meta-Llama-3-8B-Instruct"
+MODEL_NAME = "gemini-2.5-flash"
 MAX_TOKENS = 500
-TEMPERATURE = 0.7
-TOP_P = 0.9
+TEMPERATURE =  0.5
+TOP_P = 0.1
 ```
 
 You can adjust these parameters to change the chatbot's behavior.
@@ -213,8 +211,8 @@ This project demonstrates practical concepts used in real AI systems:
 # 🛠 Technologies Used
 
 - Python
-- Hugging Face Inference API
-- Meta LLaMA Model
+- GEMINI Inference API
+- GEMINI model
 - dotenv
 - Virtual Environments
 
@@ -228,5 +226,5 @@ This project is open-source and available under the MIT License.
 
 # 👨‍💻 Author
 
-Ricky Raj Sahani
+Dhruv Kumar Sahani
 Computer Science Student | AI/ML Enthusiast

@@ -4,19 +4,19 @@ from dotenv import load_dotenv
 # Load environment variables from .env
 load_dotenv()
 
-HF_API_TOKEN = os.getenv("HF_API_TOKEN")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Check if API key exists
-if HF_API_TOKEN is None:
-    raise ValueError("HF_API_TOKEN not found. Please add it to your .env file.")
+if GEMINI_API_KEY is None:
+    raise ValueError("GEMINI_API_KEY not found. Please add it to your .env file.")
 
 # Model configuration
-MODEL_NAME = "meta-llama/Meta-Llama-3-8B-Instruct"
+MODEL_NAME = "gemini-2.5-flash"
 
 # LLM generation defaults
 MAX_TOKENS = 500
-TEMPERATURE = 0.7
-TOP_P = 0.9
+TEMPERATURE = 0.5
+TOP_P = 0.1
 TOP_K = None
 REPETITION_PENALTY = None
 

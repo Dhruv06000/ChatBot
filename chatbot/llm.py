@@ -1,27 +1,36 @@
-from huggingface_hub import InferenceClient
-from typing import List, Dict
-from config.setting import HF_API_TOKEN, MODEL_NAME, MAX_TOKENS, TEMPERATURE, TOP_P
+from google import genai
+from google.genai import types
+from .utils import clean_response
+from config.setting import GEMINI_API_KEY, MODEL_NAME, MAX_TOKENS, TEMPERATURE, TOP_P
 
-# Initialize Hugging Face client
-client = InferenceClient(token=HF_API_TOKEN)
+client = genai.Client(api_key=GEMINI_API_KEY)
 
 
 def generate_response(messages, temperature=None, top_p=None, **kwargs):
 
-    params = {
-        "model": MODEL_NAME,
-        "messages": messages
-    }
+    prompt = "\n".join([f"{m['role']}: {m['content']}" for m in messages])
 
-    if temperature is not None:
-        params["temperature"] = temperature
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=temperature if temperature is not None else TEMPERATURE,
+                top_p=top_p if top_p is not None else TOP_P,
+                max_output_tokens=MAX_TOKENS
+            )
+        )
 
-    if top_p is not None:
-        params["top_p"] = top_p
+        content = clean_response(response.text)
 
-    response = client.chat_completion(**params)
+        return {
+            "role": "assistant",
+            "content": content
+        }
 
-    return {
-        "role": "assistant",
-        "content": response.choices[0].message.content
-    }
+    except Exception as e:
+        print("ERROR:", e)
+        return {
+            "role": "assistant",
+            "content": "⚠️ Something went wrong while generating a response."
+        }

@@ -1,3 +1,5 @@
+import re
+
 def print_response(response):
     """
     Prints a formatted chatbot response with color-coded roles.
@@ -23,3 +25,9 @@ def print_response(response):
         color = MAGENTA
 
     print(f"{BOLD}{color}{role.capitalize()}{RESET}: {content}")
+
+
+def clean_response(text: str) -> str:
+    if "</think>" in text:
+        text = text.split("</think>")[-1]
+    return text.strip()
